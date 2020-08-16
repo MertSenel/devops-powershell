@@ -93,13 +93,13 @@ $ARGS = @{
 $ErrorActionPreference = "Stop"
 if ($Test) {
     Test-AzResourceGroupDeployment @ARGS
-    exit 1
+    exit $LASTEXITCODE
 }
 if ($WhatIf) {
     $WhatIfResult = Get-AzResourceGroupDeploymentWhatIfResult @ARGS `
                                     -ResultFormat FullResourcePayloads
     $WhatIfResult
-    exit 1
+    exit $LASTEXITCODE
 }
 #endregion
 
@@ -114,7 +114,7 @@ try {
 }
 catch {
     Write-Host $_.Exception.Message
-    exit 1
+    exit $LASTEXITCODE
 }
 
 # Tell me If my Deployment was Successfull
