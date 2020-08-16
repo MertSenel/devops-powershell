@@ -42,7 +42,9 @@ param (
 )
 #region Configuration
 #Deployment Assets Configuration
-$OperationsPath = Split-Path $PSScriptRoot   # Go Up one level so you can pick a project, this is there in case you want to keep your script in different folder.
+# Go Up one level so you can pick a project
+# This is here in case you want to keep your script in different folder.
+$OperationsPath = Split-Path $PSScriptRoot 
 $ArmArtifactsPath = "$OperationsPath\infrastructure" # Target the folder which desired ARM Template and Parameter files are in. 
 
 #Azure Environment Configuration
@@ -71,6 +73,7 @@ $ServiceType = 'fnc'
 $Region = "wus"
 #endregion
 
+#region Service Curated Parameters
 $ResourceGroupName = $ProjectName + $Stage + $ServiceType + $Region + '01'
 $TemplateFile = "$ArmArtifactsPath\template.json"
 $TemplateParameterFile = "$ArmArtifactsPath\parameters.$Stage.$($Region)01.json"
